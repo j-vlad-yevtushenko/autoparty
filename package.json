@@ -1,0 +1,22 @@
+{
+  "name": "autoparty-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start:dev": "nodemon bot.js",
+    "start": "node bot.js"
+  },
+  "devDependencies": {
+    "eslint": "^7.12.0",
+    "eslint-config-google": "^0.14.0"
+  },
+  "dependencies": {
+    "discord.js": "^12.4.1",
+    "puppeteer": "^5.4.1",
+    "puppeteer-extra": "^3.1.15",
+    "puppeteer-extra-plugin-stealth": "^2.6.2",
+    "random-useragent": "^0.5.0",
+    "winston": "^3.3.3"
+  }
+}
