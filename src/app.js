@@ -1,8 +1,8 @@
 'use strict';
 
-const Discord = require('discord.js');
+const discord = require('discord.js');
 const winston = require('winston');
-const handler = require('./src/handler');
+const handler = require('./services/handler');
 
 const logger = winston.createLogger({
   level: 'info',
@@ -20,10 +20,12 @@ const logger = winston.createLogger({
   ],
 });
 
-const client = new Discord.Client();
+const client = new discord.Client();
 
 client.on('ready', () => {
   logger.info('Started autoparty bot!');
+  const textChannels = client.channels.cache.filter((chn) => chn.type === 'text');
+  textChannels.forEach((chn) => chn.send('@here Я онлайн. Пишіть `!i` для перегляду доступних команд'));
 });
 
 client.on('message', (message) => {
@@ -33,6 +35,7 @@ client.on('message', (message) => {
 
   const args = message.content.slice(1).trim().split(' ');
   const cmd = args.shift().toLowerCase();
+
   if (!handler[cmd]) {
     logger.warn(cmd);
     return;
@@ -46,6 +49,7 @@ client.on('message', (message) => {
     logger.error(`Error occured: ${error}`);
   }
 });
+
 client.login(process.env.TOKEN).catch((err) => {
   logger.error('Token does not exists. Please provide ENV variable');
   logger.error('Shuttind down application');
