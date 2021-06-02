@@ -36,7 +36,7 @@ const handler = {
   },
 
   cancel(message) {
-    scheduler.cancel(message.channel.id, currentTask);
+    scheduler.cancel(message.channel.id);
     message.reply('Автоматичне опитування видалено');
   },
 

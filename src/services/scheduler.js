@@ -12,7 +12,9 @@ const schedule = (channelId, cronn, callback) => {
         cancel(channelId);
     }
 
-    const task = cron.schedule(cronn, callback);
+    const task = cron.schedule(cronn, callback, {
+        timezone: config.timezone
+    });
     tasks.set(channelId, task);
 
     return task;

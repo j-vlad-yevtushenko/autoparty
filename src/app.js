@@ -3,6 +3,7 @@
 const discord = require('discord.js');
 const winston = require('winston');
 const handler = require('./services/handler');
+const {scheduleDefault} = require('./services/scheduler');
 
 const logger = winston.createLogger({
   level: 'info',
@@ -24,8 +25,12 @@ const client = new discord.Client();
 
 client.on('ready', () => {
   logger.info('Started autoparty bot!');
+
   const textChannels = client.channels.cache.filter((chn) => chn.type === 'text');
-  textChannels.forEach((chn) => chn.send('@here Я онлайн. Пишіть `!i` для перегляду доступних команд'));
+  textChannels.forEach((chn) => {
+    chn.send('@here Я онлайн. Пишіть `!i` для перегляду доступних команд');
+    scheduleDefault(chn.id, () => chn.send('@here Cьогодні в/після 23:00 хтось буде?'));
+  });
 });
 
 client.on('message', (message) => {

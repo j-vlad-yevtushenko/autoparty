@@ -1,3 +1,4 @@
 {
-    "defaultCron": "0 0 20 * *"
+    "defaultCron": "0 0 20 * * *",
+    "timezone": "Europe/Kiev"
 }
