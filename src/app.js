@@ -28,7 +28,6 @@ client.on('ready', () => {
 
   const textChannels = client.channels.cache.filter((chn) => chn.type === 'text');
   textChannels.forEach((chn) => {
-    chn.send('@here Я онлайн. Пишіть `!i` для перегляду доступних команд');
     scheduleDefault(chn.id, () => chn.send('@here Cьогодні в/після 23:00 хтось буде?'));
   });
 });
