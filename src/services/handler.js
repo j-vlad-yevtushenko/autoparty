@@ -43,7 +43,7 @@ const handler = {
   async s(message) {
     message.reply('Секунду, шукаю стату...');
 
-    const statistics = await statistic.get();
+    const statistics = await statistic.get(message.author.id);
 
     message.channel.send('', {
       embed: {
